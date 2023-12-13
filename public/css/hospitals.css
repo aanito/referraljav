@@ -1,0 +1,111 @@
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e7e6ecda;
+    padding: 10px;
+}
+.navbar img {
+    height: 50px;
+    width: 50px;
+}
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+.navbar li {
+    margin-right: 20px;
+}
+.navbar a {
+    text-decoration: none;
+    color: #333;
+}
+.navbar a:hover {
+    color: #666;
+}
+
+/* Body */
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+.body img {
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.body h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+.body p {
+    margin: 0;
+    font-size: 16px;
+}
+.body .contact {
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 300px;
+}
+.body .contact h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+.body .contact ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.body .contact li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.body .primary-care {
+    margin-top: 20px;
+    width: 100%;
+}
+.body .primary-care h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+.body .primary-care .album {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.body .primary-care .album img {
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+.body .primary-care .album h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+.body .primary-care .album button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.body .primary-care .album button:hover {
+    background-color: #666;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "referral-website",
+  "version": "1.0.0",
+  "description": "Referral website for hospitals and services in Addis Ababa",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aanito/referraljav.git"
+  },
+  "keywords": [
+    "hospital;",
+    "referral;",
+    "services;",
+    "speciality;",
+    "project;",
+    "web",
+    "application"
+  ],
+  "author": "aanito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aanito/referraljav/issues"
+  },
+  "homepage": "https://github.com/aanito/referraljav#readme",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2",
+    "nodemon": "^3.0.2"
+  }
+}
