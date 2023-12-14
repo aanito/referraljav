@@ -9,22 +9,24 @@ const MongoStore = require('connect-mongo');
 const app = express();
 const hospitalsRouter = require('./routes/hospitals');
 const homeRouter = require('./routes/home');
+const hospitalAlbumRouter = require('./routes/hospitalAlbum');
+const hospitalRouter = require('./routes/hospital');
 
 
 const PORT = process.env.PORT || 3000;
 
-// // Database connection
-// mongoose.connect('mongodb://localhost/referral_db', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// const db = mongoose.connection;
-// db.once('open', () => {
-//   console.log('Connected to MongoDB');
-// });
-// db.on('error', (err) => {
-//   console.log('MongoDB connection error:', err);
-// });
+// Database connection
+mongoose.connect('mongodb://localhost/referral_dbase', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+db.on('error', (err) => {
+  console.log('MongoDB connection error:', err);
+});
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +47,8 @@ app.use(
 app.use('/', require('./routes/index'));
 app.use('/home', homeRouter);
 app.use('/hospitals', hospitalsRouter);
+app.use('/hospitalAlbum', hospitalAlbumRouter);
+app.use('/hospital', hospitalRouter);
 // app.use('/services', require('./routes/services'));
 
 app.listen(PORT, () => {

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hospital Album</title>
+  <link rel="stylesheet" href="css/hospitalAlbum.css">
+</head>
+<body>
+  <h1>Hospital Album</h1>
+  <div class="row">
+    <!-- Fetches data from MongoDB and display it in the cards -->
+    <% hospitals.forEach(function(hospital) { %>
+        <div class="card">
+          <% if (hospital.Image && hospital.Image.data) { %>
+            <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+          <% } %>
+          
+          <div class="container">
+            <button onclick="location.href='/hospital/<%= hospital._id %>'" type="button" class="btn btn-link">
+                <h4><b><%= hospital.Name %></b></h4>
+            </button>
+            <!-- <h4><b><%= hospital.Name %></b></h4> -->
+            <p><%= hospital.Location %></p>
+          </div>
+        </div>
+    <% }); %>      
+  </div>
+</body>
+</html>
