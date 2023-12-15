@@ -1,109 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
 .navbar {
+    background-color: #f8f8f8;
+    padding: 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #f2f2f2;
-    padding: 10px;
 }
+
 .navbar img {
-    height: 50px;
     width: 50px;
+    margin-right: 10px;
 }
+
 .navbar h1 {
     margin: 0;
-    font-size: 24px;
 }
+
 .navbar ul {
-    display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
 }
-.navbar li {
-    margin-left: 20px;
+
+.navbar ul li {
+    margin-left: 15px;
 }
-.navbar a {
+
+.navbar ul li a {
     text-decoration: none;
     color: #333;
 }
-.navbar a:hover {
-    color: #666;
-}
 
-/* Body */
 .body {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
+    flex-direction: row;
+    padding: 50px;
 }
-.body img {
-    height: 200px;
-    width: 300px;
-    object-fit: cover;
-    margin-right: 20px;
+
+.hospital {
+    flex: 1;
 }
-.body h2 {
+
+.contact {
+    flex: 1;
+    padding-left: 50px;
+}
+
+.contact h3 {
     margin-top: 0;
-    font-size: 24px;
 }
-.body p {
-    margin: 0;
-    font-size: 16px;
-}
-.body .contact {
-    margin-top: 20px;
-    margin-right: 20px;
-    width: 300px;
-}
-.body .contact h3 {
-    margin-top: 0;
-    font-size: 24px;
-}
-.body .contact ul {
+
+.contact ul {
     list-style: none;
-    margin: 0;
     padding: 0;
 }
-.body .contact li {
+
+.contact ul li {
     margin-bottom: 10px;
-    font-size: 16px;
 }
-.body .primary-care {
-    margin-top: 20px;
-    width: 100%;
+
+.primary-care {
+    flex: 1;
+    padding-top: 20px;
 }
-.body .primary-care h2 {
+
+.primary-care h2 {
     margin-top: 0;
-    font-size: 24px;
 }
-.body .primary-care .album {
+
+.album {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
 }
-.body .primary-care .album img {
-    height: 200px;
-    width: 300px;
-    object-fit: cover;
-    margin-bottom: 20px;
+
+.album div {
+    margin-right: 20px;
 }
-.body .primary-care .album h3 {
-    margin-top: 0;
-    font-size: 18px;
+
+.album div img {
+    width: 200px;
 }
-.body .primary-care .album button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-}
-.body .primary-care .album button:hover {
-    background-color: #666;
+
+.album div h3 {
+    margin-top: 10px;
 }

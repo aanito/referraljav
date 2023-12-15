@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referral Web</title>
-    <link rel="stylesheet" href="css/hospital.css">
+    <link rel="stylesheet" type="text/css" href="/css/hospital.css">
+    
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar">
@@ -15,7 +17,7 @@
             <li><a href="home">Home</a></li>
             <li><a href="hospitals">Hospitals</a></li>
             <li><a href="services">Services</a></li>
-            <li><a href="#">Sign In</a></li>
+            <li><a href="sign_in">Sign In</a></li>
         </ul>
     </nav>
 
@@ -23,7 +25,7 @@
     <div class="body">
         <div class="hospital">
             <% if (hospital && hospital.Image && hospital.Image.data) { %>
-            <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+            <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>">
             <% } %>
             <div>
                 <h2><%= hospital.Name %></h2>
@@ -44,5 +46,10 @@
             <div class="album">
                 <div>
                     <img src="https://i.imgur.com/7XzVJ6L.jpg" alt="Service Image">
-                    <h3>Service Name</
-
+                    <h3>Service Name</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

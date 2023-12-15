@@ -7,11 +7,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const app = express();
-const hospitalsRouter = require('./routes/hospitals');
-const homeRouter = require('./routes/home');
-const hospitalAlbumRouter = require('./routes/hospitalAlbum');
-const hospitalRouter = require('./routes/hospital');
-
+const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -29,9 +25,23 @@ db.on('error', (err) => {
 });
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+
+// Setting the views directory and the template engine
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Serve CSS and JS files from their respective directories
+app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/js', express.static(__dirname + 'public/js'))
+
+const hospitalsRouter = require('./routes/hospitals');
+const homeRouter = require('./routes/home');
+const hospitalAlbumRouter = require('./routes/hospitalAlbum');
+const hospitalRouter = require('./routes/hospital');
+
 
 // Session management
 app.use(
