@@ -23,23 +23,25 @@
 
     <!-- Body -->
     <div class="body">
-        <div class="hospital">
-            <% if (hospital && hospital.Image && hospital.Image.data) { %>
-            <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>">
-            <% } %>
-            <div>
-                <h2><%= hospital.Name %></h2>
-                <p><%= hospital.Category %></p>
-                <p><%= hospital.Location %></p>
+        <div class="container">
+            <div class="hospital">
+                <% if (hospital && hospital.Image && hospital.Image.data) { %>
+                <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>">
+                <% } %>
+                <div>
+                    <h2><%= hospital.Name %></h2>
+                    <p><%= hospital.Category %></p>
+                    <p><%= hospital.Location %></p>
+                </div>
             </div>
-        </div>
-        <div class="contact">
-            <h3>Contact</h3>
-            <ul>
-                <li>Tel: 123-456-7890</li>
-                <li>Email: info@referralweb.com</li>
-                <li>Whatsapp: 123-456-7890</li>
-            </ul>
+            <div class="contact">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Tel: 123-456-7890</li>
+                    <li>Email: info@referralweb.com</li>
+                    <li>Whatsapp: 123-456-7890</li>
+                </ul>
+            </div>
         </div>
         <div class="primary-care">
             <h2>Primary Care</h2>
@@ -50,6 +52,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <!-- Fetches data from MongoDB and display it in the cards -->
+            <% hospital.Doctor.forEach(function(doctor) { %>
+            <div class="card">
+                <div class="container">
+                    <% if (hospital.Image && hospital.Image.data) { %>
+                        <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+                        <% } %>
+                    <h4><b><%= doctor._id.Name %></b></h4>
+                    <p><%= doctor.Email %></p>
+                    <p><%= doctor.Telephone %></p>
+                </div>
+            </div>
+            <% }); %> 
+        </div>
+          
     </div>
 </body>
 </html>
