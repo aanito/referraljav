@@ -5,12 +5,6 @@ body {
 
 }
 
-/* .body {
-    display: flex;
-    flex-direction: row;
-    padding: 50px;
-} */
-
 .navbar {
     background-color: #f8f8f8;
     padding: 20px;
@@ -56,12 +50,15 @@ body {
 }
 
 .contact {
+    /* display: flex;
+    flex-direction: column; */
     flex: 1;
-    padding-left: 50px;
+    padding-left: 60px;
+    
 }
 
 .contact h3 {
-    margin-top: 0;
+    margin-top: 40px;
 }
 
 .contact ul {
@@ -70,7 +67,7 @@ body {
 }
 
 .contact ul li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .body {
@@ -79,15 +76,51 @@ body {
     padding: 40px;
 }
 
-.primary-care {
+/* .primary-care {
     flex: 1;
     padding-top: 20px;
     width: fit-content;
+} */
+.pc_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-.primary-care h2 {
-    margin-top: 0;
+.pc_card {
+    width: 30%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
 }
+.pc_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.pc_card_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: bottom;
+}
+
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+    }
+
+/* .primary-care h2 {
+    margin-top: 0;
+} */
 
 .album {
     display: flex;
@@ -112,6 +145,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
   }
+
   .card {
     width: 30%;
     margin-bottom: 20px;
@@ -121,7 +155,23 @@ body {
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-  .container {
-    padding: 2px 16px;
+  
+  .card_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: bottom;
   }
+  
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+    }
   
