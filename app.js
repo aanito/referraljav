@@ -37,12 +37,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 
+// const indexRouter = require('./routes/index');
 const hospitalsRouter = require('./routes/hospitals');
 const homeRouter = require('./routes/home');
 const hospitalAlbumRouter = require('./routes/hospitalAlbum');
 const hospitalRouter = require('./routes/hospital');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
+// const hospitalSearch = require('./routes/home');
 
 
 // Session management
@@ -56,13 +58,14 @@ app.use(
 );
 
 // Routes
-app.use('/', require('./routes/index'));
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+app.use('/', homeRouter);
 app.use('/home', homeRouter);
 app.use('/hospitals', hospitalsRouter);
 app.use('/hospitalAlbum', hospitalAlbumRouter);
 app.use('/hospital', hospitalRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
+// app.use('/home/search', hospitalSearch);
 // app.use('/services', require('./routes/services'));
 
 app.listen(PORT, () => {

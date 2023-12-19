@@ -9,16 +9,9 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <img src="https://i.imgur.com/4jvQJZS.png" alt="Hospital Logo">
-        <h1>Referral Web</h1>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="hospitals">Hospitals</a></li>
-            <li><a href="services">Services</a></li>
-            <li><a href="login">Log In</a></li>
-        </ul>
-    </nav>
+        <navbar>
+            <%- include('partials/header') %>
+        </navbar>
 
     <!-- Body -->
     <div class="body">
@@ -41,9 +34,28 @@
                     <li>Whatsapp: 123-456-7890</li>
                 </ul>
             </div>
+            <form action="/hospital/<%= hospital._id %>/rating" method="POST">
+                <label for="rating"><h3>Rate us here:</h3></label>
+                <div class="rating">
+                  <input type="radio" name="rating" value="1"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="2"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="3"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="4"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="5"><span class="fa fa-star"></span>
+                </div>
+                <br>
+                <label for="customerName">Name:</label>
+                <input type="text" name="customerName" required>
+                <br>
+                <label for="comment">Comment:</label>
+                <textarea name="comment"></textarea>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+    
         </div>
-
-
+        
+          
         <div> 
             <h2>Primary Care</h2> 
         </div>
@@ -89,24 +101,30 @@
         <div>
             <h2>Meet Your Doctors</h2>
         </div>
-        <div class="row">
-            <!-- <h3>Meet Your Doctors</h3> -->
-            <!-- Fetches data from MongoDB and display it in the cards -->
+        <div class="doc_row"> 
             <% hospital.Doctor.forEach(function(doctor) { %>
-            <div class="card">
-                <div class="card_container">
-                    <% if (hospital.Image && hospital.Image.data) { %>
-                        <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
-                        <% } %>
-                    <div class="details">    
+              <div class="doc_card">
+                <div class="doc_card_container">
+                  <% if (hospital.Image && hospital.Image.data) { %>
+                    <figure>
+                      <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+                      <figcaption>
                         <h4><b><%= doctor.Name %></b></h4>
                         <p><%= doctor.Email %></p>
                         <p><%= doctor.Telephone %></p>
-                    </div>
+                        <p>In-person contact hours: <%= doctor.In_person_contact_hours %></p>
+                        <p>Online contact hours: <%= doctor.Online_contact_hours %></p>
+                        <form action="<%= doctor.Calendly_link %>">
+                            <button type="submit">Book for consultation</button>
+                        </form>
+                      </figcaption>
+                    </figure>
+                  <% } %>
                 </div>
-            </div>
+              </div>
             <% }); %> 
-        </div>
+          </div>
+          
           
     </div>
 </body>

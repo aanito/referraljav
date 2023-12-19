@@ -106,7 +106,6 @@ body {
     padding: bottom;
 }
 
-
     .details {
         display: flex;
         flex-direction: column;
@@ -163,7 +162,6 @@ body {
     padding: bottom;
   }
   
-
     .details {
         display: flex;
         flex-direction: column;
@@ -171,7 +169,50 @@ body {
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(164, 223, 247, 0.74);
         padding: 10px;
     }
-  
+ 
+/* .body .container {
+    display: flex;
+    flex-direction: row;
+} */
+
+.body .doc_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+.body .doc_card {
+    width: 30%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+.body .doc_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+    
+.body .doc_card_container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: bottom;
+}
+     
+.body .doc_details {
+    /* display: flex; */
+    /* flex-direction: column; */
+    position: relative;
+    line-height: 1;
+    /* bottom: 0;
+    left: 0;
+    right: 0; */
+    background-color: rgba(170, 210, 243, 0.8);
+    padding: 10px;
+}   

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hospital Album</title>
-  <link rel="stylesheet" type="text/css" href="css/hospitalAlbum.css">
+  <title>Hospital Cocktail</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/hospitalAlbum.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAw8gKi6QCRuM2IKfyf0jTrjDL8Issp8wY&libraries=places"></script>
 </head>
 <body>
     <navbar>
@@ -12,20 +14,48 @@
   <div class="row">
     <!-- Fetches data from MongoDB and display it in the cards -->
     <% hospitals.forEach(function(hospital) { %>
-        <div class="card">
-          <% if (hospital.Image && hospital.Image.data) { %>
-            <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
-          <% } %>
-          
-          <div class="container">
-            <button onclick="location.href='/hospital/<%= hospital._id %>'" type="button" class="btn btn-link">
-                <h4><b><%= hospital.Name %></b></h4>
-            </button>
-            <!-- <h4><b><%= hospital.Name %></b></h4> -->
-            <p><%= hospital.Location %></p>
+      <div class="card">
+        <% if (hospital.Image && hospital.Image.data) { %>
+          <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+        <% } %>
+        
+        <div class="container">
+          <button onclick="location.href='/hospital/<%= hospital._id %>'" type="button" class="btn btn-link">
+            <h4><b><%= hospital.Name %></b></h4>
+          </button>
+          <div id="map-<%= hospital._id %>" style="height: 100px; width: 100%;"></div>
+          <script>
+            function initMap() {
+              var map = new google.maps.Map(document.getElementById("map-<%= hospital._id %>"), {
+                center: { lat: <%= hospital.Latitude %>, lng: <%= hospital.Longitude %> },
+                zoom: 10,
+              });
+              var marker = new google.maps.Marker({
+                position: { lat: <%= hospital.Latitude %>, lng: <%= hospital.Longitude %> },
+                map: map,
+                title: '<%= hospital.Name %>',
+              });
+            }
+            initMap();
+          </script>
+          <p><%= hospital.Location %></p>
+          <div class="rating">
+            <% if (hospital && hospital.Rating) { %>
+              <% var rating = Math.round(hospital.Rating * 10) / 10; %>
+              <% var stars = Math.round(rating); %>
+              <% for (var i = 1; i <= 5; i++) { %>
+                <% if (i <= stars) { %>
+                  <span class="fa fa-star checked"></span>
+                <% } else { %>
+                  <span class="fa fa-star"></span>
+                <% } %>
+              <% } %>
+              <span><%= rating %></span>
+            <% } %>
           </div>
         </div>
+      </div>
     <% }); %>      
-  </div>
+  </div>  
 </body>
 </html>

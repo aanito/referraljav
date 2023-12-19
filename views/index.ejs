@@ -3,29 +3,60 @@
 <head>
   <title>Referral web</title>
   <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <script src="/js/index.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </head>
 <body>
-    <navbar>
-      <%- include('partials/header') %>
-    </navbar>
-  <!-- <a href="/hospitals"><button class="hospitals">Hospitals</button></a> 
-  <a href="/login"><button class="button top-right">Sign In</button></a> -->
-  <!-- <button class="hospitals">Hospitals</button> -->
-  <!-- <button class="services">Services</button> -->
-  <div class="center">
-    <!-- <button class="button">Hospitals</button> -->
-    
+  <navbar>
+    <%- include('partials/header') %>
+  </navbar>
+  <<div class="center">
     <div class="search-bar">
-      <input type="text" class="search-input" placeholder="Search Hospitals">
-      <button class="button search-button">Search</button>
+      <input type="text" class="search-input" placeholder="Search Hospitals" id="hospital-search" onkeyup="searchHospitals()">
+      <button class="button search-button" id="hospital-search-button">Search</button>
     </div>
-    
-    <!-- <button class="button">Services</button> -->
-    
+    <h1>Search Results</h1>
+    <ul id="hospital-results"></ul>
+  
     <div class="search-bar">
-      <input type="text" class="search-input" placeholder="Search Services">
-      <button class="button search-button">Search</button>
+      <input type="text" class="search-input" placeholder="Search Services" id="service-search" onkeyup="searchServices()">
+      <button class="button search-button" id="service-search-button">Search</button>
     </div>
+    <h1>Search Results</h1>
+    <ul id="service-results"></ul>
   </div>
+  
+  </div>
+  <!-- <script>
+    $(document).ready(function() {
+      $('#hospital-search').on('input', function() {
+        var query = $(this).val().trim();
+        if (query === '') {
+          $('#hospital-results').empty();
+          return;
+        }
+        $.get('/search', { q: query }, function(data) {
+          $('#hospital-results').empty();
+          data.hospitals.forEach(function(result) {
+            $('#hospital-results').append('<li>' + result.name + '</li>');
+          });
+        });
+      });
+
+      $('#service-search').on('input', function() {
+        var query = $(this).val().trim();
+        if (query === '') {
+          $('#service-results').empty();
+          return;
+        }
+        $.get('/search', { q: query }, function(data) {
+          $('#service-results').empty();
+          data.services.forEach(function(result) {
+            $('#service-results').append('<li>' + result.name + '</li>');
+          });
+        });
+      });
+    });
+  </script> -->
 </body>
 </html>

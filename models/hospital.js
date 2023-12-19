@@ -17,6 +17,14 @@ const hospitalSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  Latitude: {
+    type: Number,
+    required: true
+  },
+  Longitude: {
+    type: Number,
+    required: true
+  },
   Services: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Services',
@@ -57,6 +65,12 @@ const hospitalSchema = new mongoose.Schema({
   Contact: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Contact',
+    required: true,
+    description: "must be a reference to another document and is required"
+  },
+  Rating: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rating',
     required: true,
     description: "must be a reference to another document and is required"
   }
