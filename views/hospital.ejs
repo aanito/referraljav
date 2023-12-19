@@ -4,155 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referral Web</title>
-    <link rel="stylesheet" href="css/hospital.css">
-    <!-- <style>
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            salign-items: center;
-            background-color: #f2f2f2;
-            padding: 10px;
-        }
-        .navbar img {
-            height: 50px;
-            width: 50px;
-        }
-        .navbar h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .navbar ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar li {
-            margin-left: 20px;
-        }
-        .navbar a {
-            text-decoration: none;
-            color: #333;
-        }
-        .navbar a:hover {
-            color: #666;
-        }
-
-        /* Body */
-        .body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px;
-        }
-        .body img {
-            height: 200px;
-            width: 300px;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-        .body h2 {
-            margin-top: 0;
-            font-size: 24px;
-        }
-        .body p {
-            margin: 0;
-            font-size: 16px;
-        }
-        .body .contact {
-            margin-top: 20px;
-            margin-right: 20px;
-            width: 300px;
-        }
-        .body .contact h3 {
-            margin-top: 0;
-            font-size: 24px;
-        }
-        .body .contact ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .body .contact li {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        .body .primary-care {
-            margin-top: 20px;
-            width: 100%;
-        }
-        .body .primary-care h2 {
-            margin-top: 0;
-            font-size: 24px;
-        }
-        .body .primary-care .album {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .body .primary-care .album img {
-            height: 200px;
-            width: 300px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-        .body .primary-care .album h3 {
-            margin-top: 0;
-            font-size: 18px;
-        }
-        .body .primary-care .album button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .body .primary-care .album button:hover {
-            background-color: #666;
-        }
-    </style> -->
+    <link rel="stylesheet" type="text/css" href="/css/hospital.css">   
 </head>
+
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <img src="https://i.imgur.com/4jvQJZS.png" alt="Hospital Logo">
-        <h1>Referral Web</h1>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="hospitals">Hospitals</a></li>
-            <li><a href="services">Services</a></li>
-            <li><a href="#">Sign In</a></li>
-        </ul>
-    </nav>
+        <navbar>
+            <%- include('partials/header') %>
+        </navbar>
 
     <!-- Body -->
     <div class="body">
-        <div class="hospital">
-            <img src="https://i.imgur.com/7XzVJ6L.jpg" alt="Hospital Image">
-            <div>
-                <h2>Hospital Name</h2>
-                <p>Location</p>
-                <p>Rating</p>
-            </div>
-        </div>
-        <div class="contact">
-            <h3>Contact</h3>
-            <ul>
-                <li>Tel: 123-456-7890</li>
-                <li>Email: info@referralweb.com</li>
-                <li>Whatsapp: 123-456-7890</li>
-            </ul>
-        </div>
-        <div class="primary-care">
-            <h2>Primary Care</h2>
-            <div class="album">
+        <div class="container">
+            <div class="hospital">
+                <% if (hospital && hospital.Image && hospital.Image.data) { %>
+                <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>">
+                <% } %>
                 <div>
-                    <img src="https://i.imgur.com/7XzVJ6L.jpg" alt="Service Image">
-                    <h3>Service Name</
+                    <h2><%= hospital.Name %></h2>
+                    <p><%= hospital.Category.Name %></p> 
+                    <p><%= hospital.Location %></p>
+                </div>
+            </div>
+            <div class="contact">
+                <h3>Contact</h3>
+                <ul>
+                    <li>Tel: 123-456-7890</li>
+                    <li>Email: info@referralweb.com</li>
+                    <li>Whatsapp: 123-456-7890</li>
+                </ul>
+            </div>
+            <form action="/hospital/<%= hospital._id %>/rating" method="POST">
+                <label for="rating"><h3>Rate us here:</h3></label>
+                <div class="rating">
+                  <input type="radio" name="rating" value="1"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="2"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="3"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="4"><span class="fa fa-star"></span>
+                  <input type="radio" name="rating" value="5"><span class="fa fa-star"></span>
+                </div>
+                <br>
+                <label for="customerName">Name:</label>
+                <input type="text" name="customerName" required>
+                <br>
+                <label for="comment">Comment:</label>
+                <textarea name="comment"></textarea>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+    
+        </div>
+        
+          
+        <div> 
+            <h2>Primary Care</h2> 
+        </div>
+        <div class="pc_row">
+            <!-- Fetches data from MongoDB and display it in the cards -->
+            <% hospital.Services.Primary_care.forEach(function(Primary_care) { %>
+            <div class="pc_card">
+                <div class="pc_card_container">
+                    <% if (hospital.Image && hospital.Image.data) { %>
+                        <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+                        <% } %>
+                    <div class="pc_details">    
+                        <h4><b><%= Primary_care %></b></h4>
+                        <p><%= hospital.Email %></p>
+                        <p><%= hospital.Telephone %></p>
+                    </div>
+                </div>
+            </div>
+            <% }); %> 
+        </div>
 
+        <div> 
+            <h2>Specialty Care</h2> 
+        </div>
+        <div class="pc_row">
+            <!-- Fetches data from MongoDB and display it in the cards -->
+            <% hospital.Services.Specialty_care.forEach(function(Specialty_care) { %>
+            <div class="pc_card">
+                <div class="pc_card_container">
+                    <% if (hospital.Image && hospital.Image.data) { %>
+                        <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+                        <% } %>
+                    <div class="pc_details">    
+                        <h4><b><%= Specialty_care %></b></h4>
+                        <p><%= hospital.Contact.Email %></p>
+                        <p><%= hospital.Contact.Telephone %></p>
+                    </div>
+                </div>
+            </div>
+            <% }); %> 
+        </div>
+        
+        <div>
+            <h2>Meet Your Doctors</h2>
+        </div>
+        <div class="doc_row"> 
+            <% hospital.Doctor.forEach(function(doctor) { %>
+              <div class="doc_card">
+                <div class="doc_card_container">
+                  <% if (hospital.Image && hospital.Image.data) { %>
+                    <figure>
+                      <img src="data:image/jpg<%=hospital.Image.contentType %>;base64,<%=hospital.Image.data.toString('base64')%>" alt="<%= hospital.Name %>" style="width:100%">
+                      <figcaption>
+                        <h4><b><%= doctor.Name %></b></h4>
+                        <p><%= doctor.Email %></p>
+                        <p><%= doctor.Telephone %></p>
+                        <p>In-person contact hours: <%= doctor.In_person_contact_hours %></p>
+                        <p>Online contact hours: <%= doctor.Online_contact_hours %></p>
+                        <form action="<%= doctor.Calendly_link %>">
+                            <button type="submit">Book for consultation</button>
+                        </form>
+                      </figcaption>
+                    </figure>
+                  <% } %>
+                </div>
+              </div>
+            <% }); %> 
+          </div>
+          
+          
+    </div>
+</body>
+</html>

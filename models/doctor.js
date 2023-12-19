@@ -24,7 +24,14 @@ const doctorSchema = new mongoose.Schema({
   Online_contact_hours: {
     type: String,
     // required: true
+  },
+  Calendly_link: {
+    type: String,
+    // required: true
   }
+
 });
 
 module.exports = mongoose.model('Doctor', doctorSchema);
+
+// module.exports = Doctor;

@@ -5,7 +5,7 @@ const fs = require('fs');
 mongoose.connect('mongodb://localhost:27017/referral_dbase', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const path = process.argv[2];
-const contentType = 'image/jpeg'; // replace with the actual content type of your image
+const contentType = 'image/jpeg'; // ctual content type of the images
 const data = fs.readFileSync(path).toString('base64');
 
 const image = new Image({
