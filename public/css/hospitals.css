@@ -30,13 +30,6 @@
     align-items: center;
     width: 100%;
 }
-/* .navbar ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-} */
 
 .navbar li {
     margin-left: 200px;

@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 // Defining the schema 
 const ratingSchema = new mongoose.Schema({
-    hospitalId: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Hospital'
-    },
+    // hospitalId: {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: 'Hospital'
+    // },
     rating: { 
         type: Number, 
         required: true 
@@ -20,4 +20,4 @@ const ratingSchema = new mongoose.Schema({
 });
 
 // Create an export model for the ratings collection
-model.exports = mongoose.model('Rating', ratingSchema);
+module.exports = mongoose.model('Rating', ratingSchema);

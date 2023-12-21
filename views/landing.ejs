@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Website | Landing Page</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <style>
+    body {
+        background-image: url('/images/logo.svg');
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+      background-color: #fff;
+      margin-top: 10;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    
+    nav ul li {
+      margin-right: 20px;
+    }
+    
+    nav ul li:last-child {
+      margin-right: 0;
+    }
+    
+    nav ul li a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .hero {
+      background-image: url('/images/hero-image.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      background-color: #ff6839;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #e66338;
+    }
+    
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 50px 0;
+    }
+    
+    .feature {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .feature img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      margin-bottom: 20px;
+    }
+    
+    .feature h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .feature p {
+      font-size: 16px;
+      color: #666;
+    }
+    
+    .cta {
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 80px 0;
+    }
+    
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+    
+    footer {
+      background-color: #333;
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Referral web</h1>
+      <p>A web application that allows users to look for and book services in hospitals.</p>
+      <a href="/services" class="btn">Explore Our Services</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="hospitalSearch">
+      <img src="/images/hospitalSearch.jpeg" alt="Hospital search">
+      <h2>Hospital Search</h2>
+      <p>Displays detailed list of hospitals in the city. Upon selecting a hospital from the search results, users can find comprehensive details about the selected hospital.</p>
+    </div>
+    <div class="servicesSearch">
+      <img src="/images/services.jpeg" alt="Services search">
+      <h2>Services Search</h2>
+      <p>Displays detailed list of service provided by the hospitals. Users can access this page to gain specific knowledge about the services offered.</p>
+    </div>
+    <div class="hospitals">
+      <img src="/images/hospitalspage.jpeg" alt="Hospitals">
+      <h2>Register, Rate and Help others</h2>
+      <p>Help us value your experience and make your care better. You will have a subscription with which your complaints will be directly addressed with partner institutions, while you help other clietns have the best experience</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to Get Started?</h2>
+    <p>Register here</p>
+    <a href="/signup" class="btn">Sign Up</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Referral web. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
