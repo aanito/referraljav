@@ -2,6 +2,10 @@
 const mongoose = require('mongoose');
 
 const servicesSchema = new mongoose.Schema({
+  hospitalId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Hospital'
+  },
   Primary_care: {
     type: [String],
     required: false,

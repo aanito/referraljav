@@ -10,7 +10,10 @@ function searchHospitals() {
         hospitalResults.innerHTML = '';
         hospitals.forEach(function(hospital) {
           const li = document.createElement('li');
-          li.textContent = hospital.Name;
+          const a = document.createElement('a');
+          a.textContent = hospital.Name;
+          a.href = '/hospital/' + hospital._id;
+          li.appendChild(a);
           hospitalResults.appendChild(li);
         });
       }
@@ -30,11 +33,32 @@ function searchHospitals() {
         serviceResults.innerHTML = '';
         services.forEach(function(service) {
           const li = document.createElement('li');
-          li.textContent = service.Name;
+          const a = document.createElement('a');
+          a.textContent = service.Name;
+          a.href = '/service/' + service._id;
+          li.appendChild(a);
           serviceResults.appendChild(li);
         });
       }
     };
     xhr.send('searchQuery=' + searchQuery);
   }
-  
+ 
+
+  const slideshowImages = [
+    "/images/hospitalSearch.jpeg",
+    "/images/services.jpeg",
+    "/images/hospitalspage.jpeg"
+  ];
+  let currentSlide = 0;
+
+  function showNextSlide() {
+    const slideshow = document.querySelector('.slideshow');
+    slideshow.innerHTML = `
+      <img src="${slideshowImages[currentSlide]}" alt="Slide ${currentSlide + 1}">
+    `;
+    currentSlide = (currentSlide + 1) % slideshowImages.length;
+  }
+
+  // Change slide every 5 seconds (5000 milliseconds)
+  setInterval(showNextSlide, 5000);

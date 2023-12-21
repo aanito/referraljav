@@ -2,17 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const MongoStore = require('connect-mongo')(session);
-// const MongoStore = new (require('connect-mongo')(session))(session);
+
 const MongoStore = require('connect-mongo');
 
 const app = express();
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Database connection
-mongoose.connect('mongodb://localhost/referral_dbase', {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -44,20 +44,23 @@ const hospitalAlbumRouter = require('./routes/hospitalAlbum');
 const hospitalRouter = require('./routes/hospital');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
+const servicesRouter = require('./routes/services');
+const landingRouter = require('./routes/landing');
 // const hospitalSearch = require('./routes/home');
 
 
 // Session management
-app.use(
-  session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
-  })
-);
+// app.use(
+//   session({
+//     secret: 'SECRET_KEY',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
+//   })
+// );
 
 // Routes
+app.use('/landing', landingRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/', homeRouter);
@@ -65,7 +68,7 @@ app.use('/home', homeRouter);
 app.use('/hospitals', hospitalsRouter);
 app.use('/hospitalAlbum', hospitalAlbumRouter);
 app.use('/hospital', hospitalRouter);
-// app.use('/home/search', hospitalSearch);
+app.use('/services', servicesRouter);
 // app.use('/services', require('./routes/services'));
 
 app.listen(PORT, () => {

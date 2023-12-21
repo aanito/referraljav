@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Referral Web</title>
+    <title><%= hospital.Name %></title>
     <link rel="stylesheet" type="text/css" href="/css/hospital.css">   
 </head>
 
@@ -29,13 +29,13 @@
             <div class="contact">
                 <h3>Contact</h3>
                 <ul>
-                    <li>Tel: 123-456-7890</li>
-                    <li>Email: info@referralweb.com</li>
-                    <li>Whatsapp: 123-456-7890</li>
+                    <li>Tel: <%= hospital.Contact.Telephone %></li>
+                    <li>Email: <%= hospital.Contact.Email %></li>
+                    <li>Whatsapp: <%= hospital.Contact.Whatsapp %></li>
                 </ul>
             </div>
             <form action="/hospital/<%= hospital._id %>/rating" method="POST">
-                <label for="rating"><h3>Rate us here:</h3></label>
+                <label for="rating"><h3>Rate us here</h3></label>
                 <div class="rating">
                   <input type="radio" name="rating" value="1"><span class="fa fa-star"></span>
                   <input type="radio" name="rating" value="2"><span class="fa fa-star"></span>
@@ -44,11 +44,11 @@
                   <input type="radio" name="rating" value="5"><span class="fa fa-star"></span>
                 </div>
                 <br>
-                <label for="customerName">Name:</label>
-                <input type="text" name="customerName" required>
+                    <label for="customerName">Name:</label>
+                    <input type="text" name="customerName" required>
                 <br>
-                <label for="comment">Comment:</label>
-                <textarea name="comment"></textarea>
+                    <label for="comment">Comment:</label>
+                    <textarea name="comment"></textarea>
                 <br>
                 <button type="submit">Submit</button>
             </form>
@@ -125,7 +125,28 @@
             <% }); %> 
           </div>
           
-          
     </div>
+    <div>
+        <!-- <h3><%= hospital.name %></h3>
+        <p><%= hospital.description %></p> -->
+      
+        <h2>Reviews</h2>
+        <% if (ratings.length === 0) { %>
+            <p>No ratings yet.</p>
+          <% } else { %>
+            <ul>
+              <% ratings.forEach(rating => { %>
+                <li>
+                  <strong><%= rating.customerName %></strong> rated this hospital <%= rating.rating %> stars.
+                  <% if (rating.comment) { %>
+                    <br>
+                    <%= rating.comment %>
+                  <% } %>
+                </li>
+              <% }) %>
+            </ul>
+          <% } %>          
+    </div>
+    <%- include('partials/footer') %>
 </body>
 </html>
