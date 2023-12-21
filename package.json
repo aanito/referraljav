@@ -2,9 +2,10 @@
   "name": "referral-website",
   "version": "1.0.0",
   "description": "Referral website for hospitals and services in Addis Ababa",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node app.js",
+    "build": "npm install"
   },
   "repository": {
     "type": "git",
