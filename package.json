@@ -9,7 +9,6 @@
   "scripts": {
     "start": "node app.js",
     "test": "echo \"no test specified\" && exit 1"
-    // "build": "npm install"
   },
   "repository": {
     "type": "git",
