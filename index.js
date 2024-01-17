@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const helmet = require('helmet');
 
 const MongoStore = require('connect-mongo');
 
@@ -47,14 +48,25 @@ const landingRouter = require('./routes/landing');
 
 
 // Session management
-// app.use(
-//   session({
-//     secret: 'SECRET_KEY',
-//     resave: false,
-//     saveUninitialized: true,
-//     store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
-//   })
-// );
+app.use(
+  session({
+    secret: 'SECRET_KEY',
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
+  })
+);
+
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+      styleSrc: ["'self'", "https://cdnjs.cloudflare.com", "'unsafe-inline'"],
+    },
+  })
+);
 
 // Routes
 app.use('/landing', landingRouter);
