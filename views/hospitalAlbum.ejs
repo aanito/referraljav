@@ -4,7 +4,28 @@
   <title>Hospitals</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/hospitalAlbum.css">
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&libraries=places"></script>
+  <script>
+    function initializeMaps() {
+      var script = document.createElement("script");
+      script.src = "https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&libraries=places&callback=initMap";
+      document.body.appendChild(script);
+    }
+  
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById("map-<%= hospital._id %>"), {
+          center: { lat: <%= hospital.Latitude %>, lng: <%= hospital.Longitude %> },
+          zoom: 10,
+        });
+      var marker = new google.maps.Marker({
+          position: { lat: <%= hospital.Latitude %>, lng: <%= hospital.Longitude %> },
+          map: map,
+          title: '<%= hospital.Name %>',
+        });
+    }
+  
+    initializeMaps();
+  </script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&libraries=places"></script> -->
 </head>
 <body>
     <navbar>
@@ -24,7 +45,7 @@
             <h4><b><%= hospital.Name %></b></h4>
           </button>
           <div id="map-<%= hospital._id %>" style="height: 100px; width: 100%;"></div>
-          <script>
+          <!-- <script>
             function initMap() {
               var map = new google.maps.Map(document.getElementById("map-<%= hospital._id %>"), {
                 center: { lat: <%= hospital.Latitude %>, lng: <%= hospital.Longitude %> },
@@ -37,7 +58,7 @@
               });
             }
             initMap();
-          </script>
+          </script> -->
           <p><%= hospital.Location %></p>
           <div class="rating">
             <% if (hospital && hospital.Rating) { %>
