@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const path = require('path');
 const helmet = require('helmet');
+const crypto = require('crypto');
 
 const MongoStore = require('connect-mongo');
 
 const app = express();
-const path = require('path');
+// const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -57,16 +59,19 @@ app.use(
   })
 );
 
+app.use((req, res, next)=> {
+  res.locals.nonce = crypto.randomBytes(16).toString('base64');
+  next();
+});
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
-      styleSrc: ["'self'", "https://cdnjs.cloudflare.com", "'unsafe-inline'"],
-    },
-  })
-);
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    // defaultSrc: ["'self'"],
+    // scriptSrc: ["'self'", `'nonce-${res?.locals?.nonce}'`, "https://code.jquery.com", "https://maps.googleapis.com", "https://cdnjs.cloudflare.com"]
+    'script-src-attr': ["'unsafe-inline'"],
+    'script-src': ["'self'", "https://code.jquery.com", "https://maps.googleapis.com", "https://cdnjs.cloudflare.com"]
+  }
+}));
 
 // Routes
 app.use('/landing', landingRouter);

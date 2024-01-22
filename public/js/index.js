@@ -61,4 +61,4 @@ function searchHospitals() {
   }
 
   // Change slide every 5 seconds (5000 milliseconds)
-  setInterval(showNextSlide, 5000);
+  setInterval(showNextSlide, 1000);
