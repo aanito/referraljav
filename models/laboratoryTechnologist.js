@@ -20,6 +20,13 @@ const laboratoryTechnologistSchema = new mongoose.Schema({
   Online_contact_hours: {
     type: String,
     // required: true
+  },
+  Image: {
+    data: Buffer,
+    contentType: {
+      type: String,
+      default: contentType
+    }
   }
 });
 

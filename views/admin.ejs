@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hospital</title>
+</head>
+<body>
+    <h1>Add Hospital</h1>
+    <form action="/hospital" method="POST" enctype="multipart/form-data">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="Name" required><br><br>
+
+        <label for="category">Category: </label>
+        <select id="category" name="Category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="Primary">Primary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="Tertiary">Tertiary</option>
+        </select><br><br>
+
+        <label for="location">Location: </label>
+        <input type="text" id="location" name="Location" required><br><br>
+
+        <label for="latitude">Latitude: </label>
+        <input type="number" id="latitude" name="Latitude" required><br><br>
+
+        <label for="longitude">Longitude: </label>
+        <input type="number" id="longitude" name="Longitude" required><br><br>
+
+        <label for="services">Services: </label>
+        <select id="services" name="Services[]" multiple required>
+            <!-- <option value="" disabled>Select services</option> -->
+            <!-- Populate options dynamically from database -->
+            <h3>Primary Care</h3>
+            <ul>
+            <% services.Primary_care.forEach(function(service) { %>
+                <li>
+                <label>
+                    <input type="checkbox" name="Primary_care" value="<%= service %>">
+                    <%= service %>
+                </label>
+                </li>
+            <% }) %>
+            </ul>
+
+            <h3>Specialty Care</h3>
+            <ul>
+            <% services.Specialty_care.forEach(function(service) { %>
+                <li>
+                <label>
+                    <input type="checkbox" name="Specialty_care" value="<%= service %>">
+                    <%= service %>
+                </label>
+                </li>
+            <% }) %>
+            </ul>
+        </select><br><br>
+
+        <label for="doctors">Doctors: </label>
+        <select id="doctors" name="Doctor[]" multiple required>
+            <option value="" disabled>Select doctors</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <label for="technologists">Laboratory Technologists: </label>
+        <select id="technologists" name="LaboratoryTechnologist[]" multiple required>
+            <option value="" disabled>Select laboratory technologists</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <label for="pharmacists">Pharmacists: </label>
+        <select id="pharmacists" name="Pharmacist[]" multiple required>
+            <option value="" disabled>Select pharmacists</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <label for="capacity">Capacity: </label>
+        <select id="capacity" name="Capacity" required>
+            <option value="" disabled selected>Select capacity</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <label for="image">Image: </label>
+        <input type="file" id="image" name="Image"><br><br>
+
+        <label for="contact">Contact: </label>
+        <select id="contact" name="Contact" required>
+            <option value="" disabled selected>Select contact</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <label for="rating">Rating: </label>
+        <select id="rating" name="Rating" required>
+            <option value="" disabled selected>Select rating</option>
+            <!-- Populate options dynamically from database -->
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

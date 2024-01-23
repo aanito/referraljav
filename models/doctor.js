@@ -28,6 +28,13 @@ const doctorSchema = new mongoose.Schema({
   Calendly_link: {
     type: String,
     // required: true
+  },
+  Image: {
+    data: Buffer,
+    contentType: {
+      type: String,
+      default: 'image/jpeg'
+    }
   }
 
 });

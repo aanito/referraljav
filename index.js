@@ -46,18 +46,19 @@ const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const servicesRouter = require('./routes/services');
 const landingRouter = require('./routes/landing');
+const adminRouter = require('./routes/admin');
 // const hospitalSearch = require('./routes/home');
 
 
 // Session management
-app.use(
-  session({
-    secret: 'SECRET_KEY',
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
-  })
-);
+// app.use(
+//   session({
+//     secret: 'SECRET_KEY',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: MongoStore.create({ mongoUrl: 'mongodb://localhost/referral_dbase' }) 
+//   })
+// );
 
 app.use((req, res, next)=> {
   res.locals.nonce = crypto.randomBytes(16).toString('base64');
@@ -83,6 +84,7 @@ app.use('/hospitals', hospitalsRouter);
 app.use('/hospitalAlbum', hospitalAlbumRouter);
 app.use('/hospital', hospitalRouter);
 app.use('/services', servicesRouter);
+app.use('/admin', adminRouter);
 // app.use('/services', require('./routes/services'));
 
 app.listen(PORT, () => {
